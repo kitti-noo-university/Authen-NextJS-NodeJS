@@ -1,34 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend
 
-## Getting Started
+เว็บตัวอย่างข้อมูลนักศึกษาที่พัฒนาด้วย Next.js 10 และ React 17 ใช้ Axios เรียก backend API
 
-First, run the development server:
+## ติดตั้งและเริ่มใช้งาน
+
+ต้องติดตั้ง Node.js และ npm ก่อน (repository ไม่ได้ระบุเวอร์ชันขั้นต่ำ) จาก root ของ repository:
 
 ```bash
+cd frontend
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+เปิดเว็บที่ [http://localhost:3000](http://localhost:3000) และเปิด backend แยกอีก terminal ตามคำแนะนำใน [Backend README](../backend/README.md)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## หน้าเว็บ
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- `/` — หน้าแรก
+- `/showStudents` และ `/editStudents` — แสดงและจัดการข้อมูลนักศึกษาตัวอย่าง
+- `/register` — สมัครสมาชิก
+- `/login` — เข้าสู่ระบบ
+- `/profile` — ดูโปรไฟล์โดยใช้ JWT
+- `/logout` — ออกจากระบบและล้าง cookie ผ่าน backend
+- `/getConfig` — แสดงค่า config ของ API
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## การตั้งค่า API
 
-## Learn More
+ค่า URL อยู่ใน [`config/config.js`](config/config.js) โดย development เรียก `http://localhost/api` และเมื่อ `NODE_ENV` เป็น `production` จะเลือก URL สำหรับ production ที่กำหนดไว้ในไฟล์นี้ ไม่มี environment variable สำหรับกำหนด API URL
 
-To learn more about Next.js, take a look at the following resources:
+สำหรับการพัฒนาในเครื่อง ให้เปิด frontend ที่ `http://localhost:3000` และ backend ที่ port `80` ตามค่าเริ่มต้น; backend CORS อนุญาตเฉพาะ origin นี้ หากเปลี่ยน backend port ต้องปรับ URL ใน config ให้ตรงกับ port ใหม่
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Scripts ที่กำหนดใน `package.json`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `npm run dev` — เริ่ม development server
+- `npm run build` — build frontend
+- `npm start` — เริ่ม Next.js server หลัง build
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ดูภาพรวมการติดตั้งและวิธีใช้งานที่ [README หลัก](../README.md)
